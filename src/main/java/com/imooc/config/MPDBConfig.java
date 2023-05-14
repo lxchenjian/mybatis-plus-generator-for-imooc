@@ -8,13 +8,15 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
+
 public class MPDBConfig {
 
     public static void main(String[] args) {
-        // 代码生成器
+
+        // 一、代码生成器
         AutoGenerator autoGenerator = new AutoGenerator();
 
-        // 全局配置
+        // (1) 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
@@ -29,24 +31,26 @@ public class MPDBConfig {
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         autoGenerator.setGlobalConfig(gc);
 
-        // 数据源配置
+        // (2) 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
-        dsc.setUrl("jdbc:mysql://192.168.1.111:3306/liepin?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://192.168.1.170:3306/liepin?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("imooc");
-
         autoGenerator.setDataSource(dsc);
 
-        // 策略配置
+
+        // (3) 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setCapitalMode(true);      // 开启全局大小写(true: 大写)
         strategy.setNaming(NamingStrategy.underline_to_camel);          // 下划线转驼峰命名
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);    // 下划线转驼峰命名
 //        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
 //        strategy.setInclude("stu");
+
+        // 表名配置
         strategy.setInclude("users");
         strategy.setInclude("admin");
         strategy.setInclude("company");
@@ -66,11 +70,6 @@ public class MPDBConfig {
         strategy.setInclude("chat_message");
         strategy.setInclude("interview");
         strategy.setInclude("orders");
-
-
-
-
-
         autoGenerator.setStrategy(strategy);
 
         // 包名策略配置
